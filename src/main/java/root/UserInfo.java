@@ -7,6 +7,8 @@ public class UserInfo {
     private String password;
     private String name;
 
+    public UserInfo(){} // for deserialization
+
     public UserInfo(int id, String username, String email, String password, String name) {
         this.id = id;
         this.username = username;
