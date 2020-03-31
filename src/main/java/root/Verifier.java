@@ -2,11 +2,11 @@ package root;
 
 public class Verifier { // TODO return improved status objects OR enum
     private Boolean isValidUsername(String username){
-        return (username != null) && (username.length() > 5 && username.length() <= 16);
+        return (username != null) && (username.length() >= 5 && username.length() <= 16);
     }
 
     private Boolean isValidPassword(String password){
-        return (password != null) && (password.length() > 8 && password.length() <= 32);
+        return (password != null) && (password.length() >= 8 && password.length() <= 32);
     }
 
     private Boolean isValidEmail(String email){
