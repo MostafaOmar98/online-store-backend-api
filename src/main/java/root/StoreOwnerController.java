@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/register")
-public class StoreOwnerRegister{
+@RequestMapping("/store_owner")
+public class StoreOwnerController {
 
-    @PostMapping("/store_owner")
+    @PostMapping("/register")
     public String register(@RequestBody StoreOwner storeOwner) {
         StoreOwnerVerifier verifier = new StoreOwnerVerifier();
         String status = verifier.verify(storeOwner);
@@ -20,5 +20,6 @@ public class StoreOwnerRegister{
         }
         return status;
     }
+
 
 }
