@@ -38,4 +38,6 @@ public class StoreOwner {
     public void setUserInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
     }
+
+
 }

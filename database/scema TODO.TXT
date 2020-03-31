@@ -1,0 +1,2 @@
+increase password length to allow for built in hash
+change shop_owner to store owner
