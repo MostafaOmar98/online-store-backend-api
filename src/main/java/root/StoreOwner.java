@@ -39,5 +39,5 @@ public class StoreOwner {
         this.userInfo = userInfo;
     }
 
-
+    // TODO remove chain calls by adding getters to attributes inside UserInfo
 }

@@ -33,5 +33,5 @@ public class Verifier { // TODO return improved status objects OR enum
         }
         return "OK";
     }
-    // TODO should exists() function(s) that checks whether a username/email exist in the database be added here?
+    // TODO should exists() function(s) that checks whether a username/email exist in the database (ALL TABLES) be added here?
 }
