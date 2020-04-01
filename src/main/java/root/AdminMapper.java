@@ -44,6 +44,16 @@ public class AdminMapper {
         return fetchObject(result);
     }
 
+    public static Admin select(String username) throws SQLException{
+        String query = "SELECT * FROM admin WHERE username=?";
+
+        PreparedStatement statement = DatabaseConnection.prepare(query);
+        statement.setString(1, username);
+
+        ResultSet result = statement.executeQuery();
+        return fetchObject(result);
+    }
+
     public static Integer getKeyId(String key) throws SQLException{
         String query = "SELECT id FROM admin_keys WHERE key_value=?";
 
