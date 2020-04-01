@@ -1,5 +1,7 @@
 package root;
 
+import java.sql.SQLException;
+
 public class StoreOwnerVerifier {
     private Verifier verifier;
 
@@ -14,13 +16,19 @@ public class StoreOwnerVerifier {
         return "OK";
     }
 
-    public String verify(StoreOwner storeOwner){
-        String status = verifier.verifyUserInfo(storeOwner.getUserInfo());
-        if(!status.equals("OK"))
-            return  status;
+    private Boolean usernameExists(String username) throws SQLException {
+        return StoreOwnerMapper.select(username) != null;
+    }
 
-        status = verifySocialID(storeOwner.getSocialID());
-        return status;
+    public String verify(StoreOwner storeOwner) throws SQLException {
+        String status = verifier.verifyUserInfo(storeOwner.getUserInfo());
+        if(!status.equals("OK")){
+            return  status;
+        }
+        if(usernameExists(storeOwner.getUserInfo().getUsername())){ // FixMe function chains
+            return "Error: Username already exists";
+        }
+        return verifySocialID(storeOwner.getSocialID());
     }
     // TODO should exists() function(s) that checks whether the socialID exist in the database be added here?
 }
