@@ -1,5 +1,7 @@
 package root;
 
+import java.sql.SQLException;
+
 public class BuyerVerifier {
     private Verifier verifier;
 
@@ -14,12 +16,18 @@ public class BuyerVerifier {
         return "OK";
     }
 
-    public String verify(Buyer buyer){
-        String status = verifier.verifyUserInfo(buyer.getUserInfo());
-        if(!status.equals("OK"))
-            return  status;
+    private Boolean usernameExists(String username) throws SQLException {
+        return BuyerMapper.select(username) != null;
+    }
 
-        status = verifyAddress(buyer.getAddress());
-        return status;
+    public String verify(Buyer buyer) throws SQLException {
+        String status = verifier.verifyUserInfo(buyer.getUserInfo());
+        if(!status.equals("OK")){
+            return  status;
+        }
+        if(usernameExists(buyer.getUsername())){
+            return "Error: Username already exists";
+        }
+        return verifyAddress(buyer.getAddress());
     }
 }
