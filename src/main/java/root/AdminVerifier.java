@@ -24,12 +24,18 @@ public class AdminVerifier {
         return "OK";
     }
 
+    private Boolean usernameExists(String username) throws SQLException {
+        return AdminMapper.select(username) != null;
+    }
+
     public String verify(Admin admin) throws SQLException {
         String status = verifier.verifyUserInfo(admin.getUserInfo());
         if (!status.equals("OK")) {
             return status;
         }
-
+        if(usernameExists(admin.getUsername())){
+            return "Error: Username already exists";
+        }
         return verifyKey(admin.getKey());
     }
 }
