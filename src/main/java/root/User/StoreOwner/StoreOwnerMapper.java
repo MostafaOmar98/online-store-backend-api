@@ -53,13 +53,22 @@ public class StoreOwnerMapper {
 
         ResultSet resultSet = statement.executeQuery();
         List<StoreOwner> list = new ArrayList<StoreOwner>();
-        while(true)
-        {
+        while (true) {
             StoreOwner sw = fetchObject(resultSet);
             if (sw == null)
                 break;
             list.add(sw);
         }
         return list;
+    }
+
+    public static StoreOwner selectByEmail(String email) throws SQLException {
+        String query = "SELECT * FROM store_owner WHERE email=?";
+
+        PreparedStatement statement = DatabaseConnection.prepare(query);
+        statement.setString(1, email);
+
+        ResultSet result = statement.executeQuery();
+        return fetchObject(result);
     }
 }
