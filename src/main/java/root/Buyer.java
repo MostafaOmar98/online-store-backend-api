@@ -54,4 +54,12 @@ public class Buyer {
     public String getName(){
         return userInfo.getName();
     }
+
+    @Override
+    public String toString() {
+        return "Buyer{" +
+                "userInfo=" + userInfo +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }
