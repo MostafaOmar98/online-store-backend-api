@@ -2,6 +2,7 @@ package root.User.Buyer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import root.User.UserInfo;
+import root.User.UserType;
 
 public class Buyer {
     private UserInfo userInfo;
@@ -61,6 +62,10 @@ public class Buyer {
 
     public int getId() {
         return userInfo.getId();
+    }
+
+    public UserType getType() {
+        return UserType.BUYER;
     }
 
     @Override

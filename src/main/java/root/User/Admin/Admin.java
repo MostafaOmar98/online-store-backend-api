@@ -2,6 +2,7 @@ package root.User.Admin;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import root.User.UserInfo;
+import root.User.UserType;
 
 public class Admin {
     private UserInfo userInfo;
@@ -59,5 +60,9 @@ public class Admin {
 
     public int getId() {
         return userInfo.getId();
+    }
+
+    public UserType getType() {
+        return UserType.ADMIN;
     }
 }
