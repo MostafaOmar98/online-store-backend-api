@@ -1,10 +1,15 @@
 package root.User.Admin;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import root.User.UserInfo;
 import root.User.UserType;
 
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Admin {
+    @JsonUnwrapped
     private UserInfo userInfo;
     private String key;
 
@@ -25,7 +30,6 @@ public class Admin {
         this.key = key;
     }
 
-    @JsonIgnore
     public UserInfo getUserInfo() {
         return userInfo;
     }
@@ -62,6 +66,7 @@ public class Admin {
         return userInfo.getId();
     }
 
+    @JsonProperty
     public UserType getType() {
         return UserType.ADMIN;
     }

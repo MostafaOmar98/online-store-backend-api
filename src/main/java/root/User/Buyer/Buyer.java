@@ -1,10 +1,13 @@
 package root.User.Buyer;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import root.User.UserInfo;
 import root.User.UserType;
 
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Buyer {
     @JsonUnwrapped
     private UserInfo userInfo;
@@ -29,7 +32,6 @@ public class Buyer {
         this.address = address;
     }
 
-    @JsonIgnore
     public UserInfo getUserInfo() {
         return userInfo;
     }
@@ -66,6 +68,7 @@ public class Buyer {
         return userInfo.getId();
     }
 
+    @JsonProperty
     public UserType getType() {
         return UserType.BUYER;
     }
