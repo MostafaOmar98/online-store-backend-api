@@ -1,5 +1,6 @@
 package root.User.Admin;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import root.User.UserInfo;
 
 public class Admin {
@@ -23,6 +24,7 @@ public class Admin {
         this.key = key;
     }
 
+    @JsonIgnore
     public UserInfo getUserInfo() {
         return userInfo;
     }
@@ -47,11 +49,15 @@ public class Admin {
         return userInfo.getPassword();
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return userInfo.getEmail();
     }
 
-    public String getName(){
+    public String getName() {
         return userInfo.getName();
+    }
+
+    public int getId() {
+        return userInfo.getId();
     }
 }

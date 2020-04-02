@@ -1,5 +1,6 @@
 package root.User.StoreOwner;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import root.User.UserInfo;
 
 public class StoreOwner {
@@ -33,7 +34,8 @@ public class StoreOwner {
         this.socialID = socialID;
     }
 
-    public UserInfo getUserInfo(){
+    @JsonIgnore
+    public UserInfo getUserInfo() {
         return this.userInfo;
     }
 
@@ -41,5 +43,24 @@ public class StoreOwner {
         this.userInfo = userInfo;
     }
 
-    // TODO remove chain calls by adding getters to attributes inside UserInfo
+    public String getUsername() {
+        return userInfo.getUsername();
+    }
+
+    public String getPassword() {
+        return userInfo.getPassword();
+    }
+
+    public String getEmail() {
+        return userInfo.getEmail();
+    }
+
+    public String getName() {
+        return userInfo.getName();
+    }
+
+    public int getId() {
+        return userInfo.getId();
+    }
+
 }
