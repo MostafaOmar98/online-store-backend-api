@@ -5,6 +5,8 @@ import root.DatabaseConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminMapper {
     private static PreparedStatement bindParam(Admin admin, String query, Integer key_id) throws SQLException{
@@ -78,9 +80,25 @@ public class AdminMapper {
 
         ResultSet result = statement.executeQuery();
         String key_value = null;
-        if(result.next()){
+        if (result.next()) {
             key_value = result.getString("key_value");
         }
         return key_value;
+    }
+
+    public static List<Admin> selectAll() throws SQLException {
+        String query = "SELECT * from admin";
+
+        PreparedStatement statement = DatabaseConnection.prepare(query);
+
+        ResultSet resultSet = statement.executeQuery();
+        List<Admin> list = new ArrayList<>();
+        while (true) {
+            Admin admin = fetchObject(resultSet);
+            if (admin == null)
+                break;
+            list.add(admin);
+        }
+        return list;
     }
 }
