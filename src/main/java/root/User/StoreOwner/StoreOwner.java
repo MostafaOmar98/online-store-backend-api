@@ -11,6 +11,7 @@ import root.User.UserType;
 public class StoreOwner {
     @JsonUnwrapped
     private UserInfo userInfo;
+    @JsonProperty
     private String socialID;
 
     StoreOwner(){ // for deserialization

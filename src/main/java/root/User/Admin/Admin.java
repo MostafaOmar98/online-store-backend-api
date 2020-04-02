@@ -11,6 +11,7 @@ import root.User.UserType;
 public class Admin {
     @JsonUnwrapped
     private UserInfo userInfo;
+    @JsonProperty
     private String key;
 
     Admin(){this.userInfo = new UserInfo();}

@@ -11,6 +11,7 @@ import root.User.UserType;
 public class Buyer {
     @JsonUnwrapped
     private UserInfo userInfo;
+    @JsonProperty
     private String address;
 
     Buyer() { // for deserialization
