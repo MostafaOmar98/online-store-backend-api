@@ -5,6 +5,8 @@ import root.DatabaseConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BuyerMapper { // TODO use Springboot to do row mapping
     private static PreparedStatement bindParam(Buyer buyer, String query) throws SQLException {
@@ -42,5 +44,22 @@ public class BuyerMapper { // TODO use Springboot to do row mapping
 
         ResultSet result = statement.executeQuery();
         return fetchObject(result);
+    }
+
+    public static List<Buyer> selectAll() throws SQLException {
+        String query = "SELECT * from buyer";
+
+        PreparedStatement statement = DatabaseConnection.prepare(query);
+
+        ResultSet resultSet = statement.executeQuery();
+        List<Buyer> list = new ArrayList<>();
+        while(true)
+        {
+            Buyer buyer = fetchObject(resultSet);
+            if (buyer == null)
+                break;
+            list.add(buyer);
+        }
+        return list;
     }
 }
