@@ -2,6 +2,7 @@ package root.User;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import root.User.Admin.AdminMapper;
 import root.User.Buyer.Buyer;
 import root.User.Buyer.BuyerMapper;
 import root.User.StoreOwner.StoreOwnerMapper;
@@ -19,6 +20,8 @@ public class UserController {
         List<Object> list = new ArrayList<>();
         try {
             list.addAll(StoreOwnerMapper.selectAll());
+            list.addAll(BuyerMapper.selectAll());
+            list.addAll(AdminMapper.selectAll());
             return list;
         } catch (SQLException e) {
             e.printStackTrace();
