@@ -5,6 +5,8 @@ import root.DatabaseConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StoreOwnerMapper {
     private static PreparedStatement bindParam(StoreOwner storeOwner, String query) throws SQLException {
@@ -42,5 +44,22 @@ public class StoreOwnerMapper {
 
         ResultSet result = statement.executeQuery();
         return fetchObject(result);
+    }
+
+    public static List<StoreOwner> selectAll() throws SQLException {
+        String query = "SELECT * from store_owner";
+
+        PreparedStatement statement = DatabaseConnection.prepare(query);
+
+        ResultSet resultSet = statement.executeQuery();
+        List<StoreOwner> list = new ArrayList<StoreOwner>();
+        while(true)
+        {
+            StoreOwner sw = fetchObject(resultSet);
+            if (sw == null)
+                break;
+            list.add(sw);
+        }
+        return list;
     }
 }
