@@ -1,10 +1,12 @@
 package root.User.StoreOwner;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import root.User.UserInfo;
 import root.User.UserType;
 
 public class StoreOwner {
+    @JsonUnwrapped
     private UserInfo userInfo;
     private String socialID;
 
@@ -35,7 +37,6 @@ public class StoreOwner {
         this.socialID = socialID;
     }
 
-    @JsonIgnore
     public UserInfo getUserInfo() {
         return this.userInfo;
     }
@@ -44,22 +45,27 @@ public class StoreOwner {
         this.userInfo = userInfo;
     }
 
+    @JsonIgnore
     public String getUsername() {
         return userInfo.getUsername();
     }
 
+    @JsonIgnore
     public String getPassword() {
         return userInfo.getPassword();
     }
 
+    @JsonIgnore
     public String getEmail() {
         return userInfo.getEmail();
     }
 
+    @JsonIgnore
     public String getName() {
         return userInfo.getName();
     }
 
+    @JsonIgnore
     public int getId() {
         return userInfo.getId();
     }

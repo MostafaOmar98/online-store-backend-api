@@ -53,13 +53,22 @@ public class BuyerMapper { // TODO use Springboot to do row mapping
 
         ResultSet resultSet = statement.executeQuery();
         List<Buyer> list = new ArrayList<>();
-        while(true)
-        {
+        while (true) {
             Buyer buyer = fetchObject(resultSet);
             if (buyer == null)
                 break;
             list.add(buyer);
         }
         return list;
+    }
+
+    public static Buyer selectByEmail(String email) throws SQLException {
+        String query = "SELECT * FROM buyer WHERE email=?";
+
+        PreparedStatement statement = DatabaseConnection.prepare(query);
+        statement.setString(1, email);
+
+        ResultSet result = statement.executeQuery();
+        return fetchObject(result);
     }
 }

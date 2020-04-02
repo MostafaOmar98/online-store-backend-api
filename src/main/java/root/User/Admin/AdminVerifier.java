@@ -20,7 +20,7 @@ public class AdminVerifier {
         if(key_id == null){
             return "Error: Key does not exist";
         }
-        if(AdminMapper.select(key_id) != null){
+        if (AdminMapper.select(key_id) != null) {
             return "Error: Key is reserved";
         }
         return "OK";
@@ -30,14 +30,22 @@ public class AdminVerifier {
         return AdminMapper.select(username) != null;
     }
 
+    private boolean emailExists(String email) throws SQLException {
+        return AdminMapper.selectByEmail(email) != null;
+    }
+
     public String verify(Admin admin) throws SQLException {
         String status = verifier.verifyUserInfo(admin.getUserInfo());
         if (!status.equals("OK")) {
             return status;
         }
-        if(usernameExists(admin.getUsername())){
+        if (usernameExists(admin.getUsername())) {
             return "Error: Username already exists";
+        }
+        if (emailExists(admin.getEmail())) {
+            return "Error: Email already exists";
         }
         return verifyKey(admin.getKey());
     }
+
 }

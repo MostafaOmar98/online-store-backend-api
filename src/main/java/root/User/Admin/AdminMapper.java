@@ -101,4 +101,14 @@ public class AdminMapper {
         }
         return list;
     }
+
+    public static Admin selectByEmail(String email) throws SQLException {
+        String query = "SELECT * FROM admin WHERE email=?";
+
+        PreparedStatement statement = DatabaseConnection.prepare(query);
+        statement.setString(1, email);
+
+        ResultSet result = statement.executeQuery();
+        return fetchObject(result);
+    }
 }

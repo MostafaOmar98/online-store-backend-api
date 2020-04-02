@@ -12,7 +12,7 @@ public class BuyerVerifier {
     }
 
     private String verifyAddress(String address){
-        if(address == null || address.isEmpty()){
+        if (address == null || address.isEmpty()) {
             return "Error: Address cannot be empty";
         }
         return "OK";
@@ -22,13 +22,20 @@ public class BuyerVerifier {
         return BuyerMapper.select(username) != null;
     }
 
+    private Boolean emailExists(String email) throws SQLException {
+        return BuyerMapper.selectByEmail(email) != null;
+    }
+
     public String verify(Buyer buyer) throws SQLException {
         String status = verifier.verifyUserInfo(buyer.getUserInfo());
-        if(!status.equals("OK")){
-            return  status;
+        if (!status.equals("OK")) {
+            return status;
         }
-        if(usernameExists(buyer.getUsername())){
+        if (usernameExists(buyer.getUsername())) {
             return "Error: Username already exists";
+        }
+        if (emailExists(buyer.getEmail())) {
+            return "Error: Email already exists";
         }
         return verifyAddress(buyer.getAddress());
     }

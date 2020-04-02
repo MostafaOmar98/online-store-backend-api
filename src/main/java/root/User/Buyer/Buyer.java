@@ -1,10 +1,12 @@
 package root.User.Buyer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import root.User.UserInfo;
 import root.User.UserType;
 
 public class Buyer {
+    @JsonUnwrapped
     private UserInfo userInfo;
     private String address;
 
