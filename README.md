@@ -14,7 +14,7 @@ This document contains descritpions, instructions, and some examples for a Java 
 
 
 # Functions
-## User Registration
+## 1- User Registration
 
 ### Request Type
     POST
