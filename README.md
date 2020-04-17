@@ -75,7 +75,7 @@ Possible (but not all) status responses:
 ### Request Type
     GET
 ### URL
-    /user/users
+    /admin/list_all
 ### Body
 This function requires no body.
 ### Action
