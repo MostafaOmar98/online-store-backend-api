@@ -1,6 +1,7 @@
 package root.User.StoreOwner;
 
 import root.DatabaseConnection;
+import root.User.UserMapper;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoreOwnerMapper {
+public class StoreOwnerMapper implements UserMapper {
+
     private static PreparedStatement bindParam(StoreOwner storeOwner, String query) throws SQLException {
         PreparedStatement statement = DatabaseConnection.prepare(query);
 
@@ -70,5 +72,17 @@ public class StoreOwnerMapper {
 
         ResultSet result = statement.executeQuery();
         return fetchObject(result);
+    }
+
+
+    @Override
+    public Boolean userExists(String username, String password) throws SQLException{
+        String query = "SELECT * FROM store_owner where username=? AND password=?";
+
+        PreparedStatement statement = DatabaseConnection.prepare(query);
+        statement.setString(1, username);
+        statement.setString(2, password);
+        ResultSet result = statement.executeQuery();
+        return fetchObject(result) != null;
     }
 }
