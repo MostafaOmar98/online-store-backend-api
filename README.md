@@ -1,13 +1,13 @@
 # Online Store Web API
 
 * [Summary](#summary)
-* [General guidelines](#general-guidelinessssss)
+* [General guidelines](#general-guidelines)
 * [Functions](#functions)
 
 ## Summary
 This document contains descritpions, instructions, and some examples for a Java Springboot and MySQL based Web API service that handles the back-end logic of buying, selling, product exploration, and user management functionalities for an online store.
 
-## General guidelinessssss
+## General guidelines
 * The API consists of a set of public functions.
 * A function can be accessed via an HTTP request using a unique URL.
 * The parameters of a function are passed as URL parameters or in the body of the HTTP request in JSON format.
