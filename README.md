@@ -3,9 +3,20 @@
 * [Summary](#summary)
 * [General guidelines](#general-guidelines)
 * [Functions](#functions)
+* [Dependencies](#dependencies)
+* [Get on Docker](#get-on-docker)
+
 
 ## Summary
 This document contains descritpions, instructions, and some examples for a Java Springboot and MySQL based Web API service that handles the back-end logic of buying, selling, product exploration, and user management functionalities for an online store.
+
+## Dependencies
+For manual installation, the following packages have to be present in the installation environment:
+* Java 11 SDK
+* Springboot version 2.2.6.RELEASE
+* MySQL 5.7 (or higher)
+* Java MySQL connector
+For automatic installation, refer to the pom.xml file in this repo, or to the Docker installation document in this repo.
 
 ## General guidelines
 * The API consists of a set of public functions.
