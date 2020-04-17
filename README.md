@@ -1,7 +1,7 @@
 # Online Store Web API
 
 * [Summary](#summary)
-* [General guidelines](#general-guidelines)
+* [General guidelines](#general-guidelinessssss)
 * [Functions](#functions)
 
 ## Summary
