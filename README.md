@@ -64,7 +64,7 @@ Possible (but not all) status responses:
 ### Body
 This function requires no body.
 ### Action
-    Fetches all registered users from the database and returns them in a list.
+Fetches all registered users from the database and returns them in a list.
 ### Response
     {
     [{user1}, {user2}, ....]
