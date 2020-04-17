@@ -14,6 +14,9 @@ This document contains descritpions, instructions, and some examples for a Java 
 
 
 # Functions
+* [User Registration](#user-registration)
+* [List Users](#list-users)
+
 ## User Registration
 
 ### Request Type
