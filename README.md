@@ -24,13 +24,11 @@ This document contains descritpions, instructions, and some examples for a Java 
 
 ### Body
     {
-    "userInfo": {
         "username": <username>,
         "email": <email>,
         "password": <password>,
         "name": <name>
-    },
-    additional: <additional_information>
+        additional: <additional_information>
     }
 ### Action
 Verifies that the given credentials meet the following criteria:
@@ -51,11 +49,9 @@ Possible (but not all) status responses:
 
 ### Example
     {
-    "userInfo": {
         "username": "user1",
         "email": "email@domain.com",
         "password": "1234",
         "name": "my_name"
-    },
-    "socialID": "ID123",
+        "socialID": "ID123",
     }
