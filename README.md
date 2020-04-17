@@ -50,7 +50,7 @@ Possible (but not all) status responses:
 * Error: Unhandled Exception
 * OK
 
-### Example
+### Request Body Example
     {
         "username": "user1",
         "email": "email@domain.com",
@@ -72,7 +72,7 @@ Fetches all registered users from the database and returns them in a list.
     {
     [{user1}, {user2}, ....]
     }
-### Example
+### Response Body Example
     {   
         [
             {
