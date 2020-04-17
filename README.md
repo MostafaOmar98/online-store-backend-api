@@ -36,7 +36,7 @@ For automatic installation, refer to the [pom.xml](https://github.com/MostafaOma
 
 ### URL
     /<user_type>/register
-
+    e.g. /buyer/register
 ### Body
     {
         "username": <username>,
