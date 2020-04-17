@@ -16,6 +16,7 @@ For manual installation, the following packages have to be present in the instal
 * Springboot version 2.2.6.RELEASE
 * MySQL 5.7 (or higher)
 * Java MySQL connector
+
 For automatic installation, refer to the pom.xml file in this repo, or to the Docker installation document in this repo.
 
 ## General guidelines
