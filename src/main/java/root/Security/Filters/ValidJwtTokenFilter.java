@@ -40,7 +40,6 @@ public class ValidJwtTokenFilter extends OncePerRequestFilter {
         }
         if (jwtToken == null || !jwtUtil.validateToken(jwtToken, new UserCredentials(username, "", UserType.ADMIN)))
             throw new ServletException("Bad Credentials");
-        System.out.println(username);
         filterChain.doFilter(request, response);
     }
 
@@ -48,7 +47,9 @@ public class ValidJwtTokenFilter extends OncePerRequestFilter {
     public FilterRegistrationBean<ValidJwtTokenFilter> ValidJwtTokenFilterBean() {
         FilterRegistrationBean<ValidJwtTokenFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new ValidJwtTokenFilter());
-        registrationBean.addUrlPatterns("/user/*");
+        registrationBean.addUrlPatterns("/buyer/*");
+        registrationBean.addUrlPatterns("/store_owner/*");
+        registrationBean.addUrlPatterns("/admin/*");
         return registrationBean;
     }
 

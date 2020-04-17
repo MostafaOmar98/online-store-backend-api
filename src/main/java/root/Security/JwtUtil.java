@@ -3,6 +3,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Service;
+import root.User.UserType;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -16,6 +17,11 @@ public class JwtUtil {
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
+    }
+
+    public String extractUserType(String token){
+        Claims claims = extractAllClaims(token);
+        return (String)claims.get("userType");
     }
 
     public Date extractExpiration(String token) {
@@ -36,6 +42,7 @@ public class JwtUtil {
 
     public String generateToken(UserCredentials userCredentials) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("userType", userCredentials.getUserType());
         return createToken(claims, userCredentials.getUsername());
     }
 
