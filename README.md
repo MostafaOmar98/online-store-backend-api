@@ -15,9 +15,9 @@ For manual installation, the following packages have to be present in the instal
 * Java 11 SDK
 * Springboot version 2.2.6.RELEASE
 * MySQL 5.7 (or higher)
-* Java MySQL connector
+* Java MySQL Connector
 
-For automatic installation, refer to the pom.xml file in this repo, or to the Docker installation document in this repo.
+For automatic installation, refer to the [pom.xml](https://github.com/MostafaOmar98/Fatty-Inc/blob/master/pom.xml) file in this repo, or to the Docker installation section in this document.
 
 ## General guidelines
 * The API consists of a set of public functions.
