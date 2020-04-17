@@ -14,7 +14,7 @@ This document contains descritpions, instructions, and some examples for a Java 
 
 
 # Functions
-## 1- User Registration
+## User Registration
 
 ### Request Type
     POST
@@ -27,7 +27,7 @@ This document contains descritpions, instructions, and some examples for a Java 
         "username": <username>,
         "email": <email>,
         "password": <password>,
-        "name": <name>
+        "name": <name>,
         additional: <additional_information>
     }
 ### Action
@@ -52,6 +52,38 @@ Possible (but not all) status responses:
         "username": "user1",
         "email": "email@domain.com",
         "password": "1234",
-        "name": "my_name"
-        "socialID": "ID123",
+        "name": "my_name",
+        "socialID": "ID123"
+    }
+    
+## List Users
+### Request Type
+    GET
+### URL
+    /user/users
+### Body
+This function requires no body.
+### Action
+    Fetches all registered users from the database and returns them in a list.
+### Response
+    {
+    [{user1}, {user2}, ....]
+    }
+### Example
+    {   
+        [
+            {
+                "username": "user1",
+                "email": "email@domain.com",
+                "password": "1234",
+                "name": "my_name",
+                "socialID": "ID_YYY"
+            },
+            {
+                "username": "user2",
+                "email": "email2@domain.com",
+                "password": "12345",
+                "name": "my_name",
+            }
+        ]
     }
