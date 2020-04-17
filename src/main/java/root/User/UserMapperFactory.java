@@ -1,8 +1,7 @@
 package root.User;
 
+import root.User.Admin.AdminMapper;
 import root.User.StoreOwner.StoreOwnerMapper;
-
-import static root.User.UserType.STORE_OWNER;
 
 public class UserMapperFactory {
 
@@ -14,7 +13,7 @@ public class UserMapperFactory {
             case STORE_OWNER:
                 return new StoreOwnerMapper();
             case ADMIN:
-                break;
+                return new AdminMapper();
         }
         return null;
     }

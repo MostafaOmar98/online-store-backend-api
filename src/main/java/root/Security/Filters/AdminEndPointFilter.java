@@ -18,35 +18,29 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class ValidJwtTokenFilter extends OncePerRequestFilter {
-
-
-    public ValidJwtTokenFilter() {
-    }
+public class AdminEndPointFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
 
-        String username = null;
         String jwtToken = null;
         JwtUtil jwtUtil = new JwtUtil();
         if (authHeader != null && authHeader.startsWith("Bearer "))
         {
             jwtToken = authHeader.substring(7);
-            username = jwtUtil.extractUsername(jwtToken);
+            System.out.println(jwtToken);
         }
-        if (jwtToken == null || !jwtUtil.validateToken(jwtToken, new UserCredentials(username, "", UserType.ADMIN)))
-            throw new ServletException("Bad Credentials");
+        if (!jwtUtil.extractUserType(jwtToken).equals("ADMIN"))
+            throw new ServletException("Access Denied");
         filterChain.doFilter(request, response);
     }
 
     @Bean
-    public FilterRegistrationBean<ValidJwtTokenFilter> ValidJwtTokenFilterBean() {
-        FilterRegistrationBean<ValidJwtTokenFilter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(new ValidJwtTokenFilter());
+    public FilterRegistrationBean<AdminEndPointFilter> AdminEndPointFilterBean() {
+        FilterRegistrationBean<AdminEndPointFilter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setFilter(new AdminEndPointFilter());
         registrationBean.addUrlPatterns("/admin/listAll");
         return registrationBean;
     }
-
 }

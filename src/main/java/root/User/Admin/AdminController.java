@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @RequestMapping("/users")
+    @RequestMapping("/listAll")
     public List<Object> getAll() {
         List<Object> list = new ArrayList<>();
         try {

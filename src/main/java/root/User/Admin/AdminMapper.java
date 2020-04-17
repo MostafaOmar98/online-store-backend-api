@@ -1,6 +1,7 @@
 package root.User.Admin;
 
 import root.DatabaseConnection;
+import root.User.UserMapper;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminMapper {
+public class AdminMapper implements UserMapper {
     private static PreparedStatement bindParam(Admin admin, String query, Integer key_id) throws SQLException{
         PreparedStatement statement = DatabaseConnection.prepare(query);
 
@@ -110,5 +111,16 @@ public class AdminMapper {
 
         ResultSet result = statement.executeQuery();
         return fetchObject(result);
+    }
+
+    @Override
+    public Boolean userExists(String username, String password) throws SQLException{
+        String query = "SELECT * FROM admin where username=? AND password=?";
+
+        PreparedStatement statement = DatabaseConnection.prepare(query);
+        statement.setString(1, username);
+        statement.setString(2, password);
+        ResultSet result = statement.executeQuery();
+        return fetchObject(result) != null;
     }
 }
