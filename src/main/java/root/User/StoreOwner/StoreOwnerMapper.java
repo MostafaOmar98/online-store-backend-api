@@ -1,6 +1,8 @@
 package root.User.StoreOwner;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import root.DatabaseConnection;
+import root.User.Buyer.Buyer;
 import root.User.UserMapper;
 
 import java.sql.PreparedStatement;
@@ -77,12 +79,7 @@ public class StoreOwnerMapper implements UserMapper {
 
     @Override
     public Boolean userExists(String username, String password) throws SQLException{
-        String query = "SELECT * FROM store_owner where username=? AND password=?";
-
-        PreparedStatement statement = DatabaseConnection.prepare(query);
-        statement.setString(1, username);
-        statement.setString(2, password);
-        ResultSet result = statement.executeQuery();
-        return fetchObject(result) != null;
+        StoreOwner storeOwner = select(username);
+        return storeOwner != null && new BCryptPasswordEncoder().matches(password, storeOwner.getPassword());
     }
 }

@@ -21,8 +21,7 @@ public class Authentication {
     @PostMapping("/authenticate")
     public String authenticate(@RequestBody UserCredentials userCredentials) throws SQLException {
         UserMapper mapper = UserMapperFactory.createMapper(userCredentials.getUserType());
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        userCredentials.setPassword(encoder.encode(userCredentials.getPassword()));
+
         if (!mapper.userExists(userCredentials.getUsername(), userCredentials.getPassword()))
             return "ERROR: User Not Found";
 

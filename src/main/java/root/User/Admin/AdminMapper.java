@@ -1,6 +1,8 @@
 package root.User.Admin;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import root.DatabaseConnection;
+import root.User.Buyer.Buyer;
 import root.User.UserMapper;
 
 import java.sql.PreparedStatement;
@@ -115,12 +117,7 @@ public class AdminMapper implements UserMapper {
 
     @Override
     public Boolean userExists(String username, String password) throws SQLException{
-        String query = "SELECT * FROM admin where username=? AND password=?";
-
-        PreparedStatement statement = DatabaseConnection.prepare(query);
-        statement.setString(1, username);
-        statement.setString(2, password);
-        ResultSet result = statement.executeQuery();
-        return fetchObject(result) != null;
+        Admin admin = select(username);
+        return admin != null && new BCryptPasswordEncoder().matches(password, admin.getPassword());
     }
 }

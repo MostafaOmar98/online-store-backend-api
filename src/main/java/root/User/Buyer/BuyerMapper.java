@@ -1,5 +1,6 @@
 package root.User.Buyer;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import root.DatabaseConnection;
 import root.User.UserMapper;
 
@@ -75,12 +76,7 @@ public class BuyerMapper implements UserMapper { // TODO use Springboot to do ro
 
     @Override
     public Boolean userExists(String username, String password) throws SQLException{
-        String query = "SELECT * FROM buyer where username=? AND password=?";
-
-        PreparedStatement statement = DatabaseConnection.prepare(query);
-        statement.setString(1, username);
-        statement.setString(2, password);
-        ResultSet result = statement.executeQuery();
-        return fetchObject(result) != null;
+        Buyer buyer = select(username);
+        return buyer != null && new BCryptPasswordEncoder().matches(password, buyer.getPassword());
     }
 }
