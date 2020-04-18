@@ -27,10 +27,7 @@ public class AdminEndPointFilter extends OncePerRequestFilter {
         String jwtToken = null;
         JwtUtil jwtUtil = new JwtUtil();
         if (authHeader != null && authHeader.startsWith("Bearer "))
-        {
             jwtToken = authHeader.substring(7);
-            System.out.println(jwtToken);
-        }
         if (!jwtUtil.extractUserType(jwtToken).equals("ADMIN"))
             throw new ServletException("Access Denied");
         filterChain.doFilter(request, response);

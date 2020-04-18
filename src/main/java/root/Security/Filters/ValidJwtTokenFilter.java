@@ -36,8 +36,8 @@ public class ValidJwtTokenFilter extends OncePerRequestFilter {
             jwtToken = authHeader.substring(7);
             username = jwtUtil.extractUsername(jwtToken);
         }
-        if (jwtToken == null || !jwtUtil.validateToken(jwtToken, new UserCredentials(username, "", UserType.ADMIN)))
-            throw new ServletException("Bad Credentials");
+        if (jwtToken == null || !jwtUtil.validateToken(jwtToken, username))
+            throw new ServletException("Bad Token");
         filterChain.doFilter(request, response);
     }
 

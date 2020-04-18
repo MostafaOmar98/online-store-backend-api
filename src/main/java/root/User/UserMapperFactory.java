@@ -1,6 +1,7 @@
 package root.User;
 
 import root.User.Admin.AdminMapper;
+import root.User.Buyer.BuyerMapper;
 import root.User.StoreOwner.StoreOwnerMapper;
 
 public class UserMapperFactory {
@@ -9,7 +10,7 @@ public class UserMapperFactory {
         switch(userType)
         {
             case BUYER:
-                break;
+                return new BuyerMapper();
             case STORE_OWNER:
                 return new StoreOwnerMapper();
             case ADMIN:

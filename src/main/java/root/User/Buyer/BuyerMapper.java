@@ -1,6 +1,7 @@
 package root.User.Buyer;
 
 import root.DatabaseConnection;
+import root.User.UserMapper;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BuyerMapper { // TODO use Springboot to do row mapping
+public class BuyerMapper implements UserMapper { // TODO use Springboot to do row mapping
     private static PreparedStatement bindParam(Buyer buyer, String query) throws SQLException {
         PreparedStatement statement = DatabaseConnection.prepare(query);
 
@@ -70,5 +71,16 @@ public class BuyerMapper { // TODO use Springboot to do row mapping
 
         ResultSet result = statement.executeQuery();
         return fetchObject(result);
+    }
+
+    @Override
+    public Boolean userExists(String username, String password) throws SQLException{
+        String query = "SELECT * FROM buyer where username=? AND password=?";
+
+        PreparedStatement statement = DatabaseConnection.prepare(query);
+        statement.setString(1, username);
+        statement.setString(2, password);
+        ResultSet result = statement.executeQuery();
+        return fetchObject(result) != null;
     }
 }
