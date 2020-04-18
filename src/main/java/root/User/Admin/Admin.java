@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import root.User.UserInfo;
 import root.User.UserType;
 
-@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Admin {
     @JsonUnwrapped
     private UserInfo userInfo;
@@ -70,5 +70,9 @@ public class Admin {
     @JsonProperty
     public UserType getType() {
         return UserType.ADMIN;
+    }
+
+    public void setPassword(String password) {
+        userInfo.setPassword(password);
     }
 }

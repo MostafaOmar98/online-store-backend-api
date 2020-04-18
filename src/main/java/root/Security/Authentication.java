@@ -1,6 +1,7 @@
 package root.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +21,8 @@ public class Authentication {
     @PostMapping("/authenticate")
     public String authenticate(@RequestBody UserCredentials userCredentials) throws SQLException {
         UserMapper mapper = UserMapperFactory.createMapper(userCredentials.getUserType());
-//        userCredentials.setPassword(); hash password
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        userCredentials.setPassword(encoder.encode(userCredentials.getPassword()));
         if (!mapper.userExists(userCredentials.getUsername(), userCredentials.getPassword()))
             return "ERROR: User Not Found";
 
